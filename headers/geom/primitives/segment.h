@@ -59,4 +59,3 @@ namespace structures {
 }}
 
 #endif /* _SEGMENT_H_ */
-

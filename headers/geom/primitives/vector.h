@@ -2,6 +2,7 @@
 #define _VECTOR_H_
 
 #include "type_aliases.h"
+#include "geom/primitives/range.h"
 
 namespace geom {
 namespace structures {
@@ -14,13 +15,6 @@ namespace structures {
             : x(x)
             , y(y)
         {}
-
-        vector_type & operator *= (double alpha)
-        {
-            x *= alpha;
-            y *= alpha;
-            return *this;
-        }
     };
 
     inline int64 operator ^ (vector_type const & v1, vector_type const & v2)
@@ -36,15 +30,6 @@ namespace structures {
     }
 
     inline vector_type const operator - (vector_type const & v) { return vector_type(-v.x, -v.y); }
-
-    inline vector_type const operator * (vector_type const & v, double alpha)
-    {
-        vector_type res(v);
-        res *= alpha;
-        return res;
-    }
-
-    inline vector_type const operator * (double alpha, vector_type const & v) { return v * alpha; }
 
 }}
 
