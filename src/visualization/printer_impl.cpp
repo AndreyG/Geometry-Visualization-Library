@@ -39,7 +39,7 @@ namespace visualization
         void flush()
         {
             write_(ss_.str().c_str());                 
-            ss_.clear();
+            ss_.str("");
         }
 
     private:
