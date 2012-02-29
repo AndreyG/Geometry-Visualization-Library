@@ -22,7 +22,7 @@ void main_window_t::initializeGL()
     assert(doubleBuffer());
     setAutoBufferSwap(true);
     qglClearColor(Qt::black);
-    glEnable(GL_PROGRAM_POINT_SIZE);
+    //glEnable(GL_PROGRAM_POINT_SIZE);
 }
 
 using geom::structures::point_type;
