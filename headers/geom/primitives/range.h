@@ -42,6 +42,11 @@ namespace structures {
         return (int64(1) + r.inf + r.sup) / 2;
     }
 
+    inline int32 size(range_type const & r)
+    {
+        return r.sup - r.inf;
+    }
+
 }}
 
 #endif /* _RANGE_H_ */

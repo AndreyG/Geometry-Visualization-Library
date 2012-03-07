@@ -24,6 +24,8 @@ namespace structures {
 
         size_t vertices_num() const { return pts_.size(); }
 
+        point_type const & operator [] (size_t idx) const { return pts_[idx]; }
+
     private:
         friend struct contour_builder_type;
 
