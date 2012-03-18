@@ -20,20 +20,15 @@ namespace visualization
         drawer.draw_line(rect.corner(0, 1), rect.corner(0, 0));
     }
 
-    void draw(drawer_type & drawer, contour_type const & cnt)
+    void draw(drawer_type & drawer, contour_type const & cnt, bool draw_vertices)
     {
-        //util::stopwatch _("visualization::draw(contour)");
-
-        //for (auto pt : cnt) 
-        //{
-            //util::debug_stream() << pt;
-        //}
-
         contour_circulator beg(cnt), it = beg;
 
         do
         {
             point_type pt = *it;
+            if (draw_vertices)
+                drawer.draw_point(pt, 3);
             ++it;
             drawer.draw_line(segment_type(pt, *it));
         }
