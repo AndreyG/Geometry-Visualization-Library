@@ -64,7 +64,7 @@ namespace visualization
         , corner_stream_height_indent_(15)
         , corner_stream_(
                 new extended_stream_impl(
-                    [draw_string_corner, &corner_stream_height_indent_] (const char * str) {
+                    [draw_string_corner, this] (const char * str) {
                         draw_string_corner(10, corner_stream_height_indent_, str);
                         corner_stream_height_indent_ += 15;
                     }
