@@ -35,9 +35,9 @@ namespace visualization
     struct drawer_type
     {
         virtual void set_color  (QColor const &)                                            = 0;
-        virtual void draw_line  (segment_type const &,                   double width  = 1) = 0;
-        virtual void draw_line  (point_type const &, point_type const &, double width  = 1) = 0;
-        virtual void draw_point (point_type const &,                     float  radius = 1) = 0;
+        virtual void draw_line  (segment_type const &,                   float width  = 1) = 0;
+        virtual void draw_line  (point_type const &, point_type const &, float width  = 1) = 0;
+        virtual void draw_point (point_type const &,                     float radius = 1) = 0;
 
         virtual ~drawer_type() {};
     };

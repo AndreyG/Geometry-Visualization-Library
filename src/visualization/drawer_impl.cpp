@@ -14,7 +14,7 @@ void drawer_impl::set_color(QColor const & c)
     current_color_ = c;
 }
 
-void drawer_impl::draw_line(point_type const & a, point_type const & b, double width)
+void drawer_impl::draw_line(point_type const & a, point_type const & b, float width)
 {
     if (segment_buffers.empty() || (segment_buffers.back().width != width))
     {
@@ -37,7 +37,7 @@ void drawer_impl::draw_line(point_type const & a, point_type const & b, double w
     colors_buffer.push_back(current_color_.blueF());
 }
 
-void drawer_impl::draw_line(segment_type const & seg, double width)
+void drawer_impl::draw_line(segment_type const & seg, float width)
 {
     draw_line(seg[0], seg[1], width);
 }

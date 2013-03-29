@@ -11,8 +11,8 @@ namespace visualization
 struct drawer_impl : drawer_type
 {
     void set_color(QColor const & c);
-    void draw_line(segment_type const &, double width);
-    void draw_line(point_type const &, point_type const &, double width);
+    void draw_line(segment_type const &, float width);
+    void draw_line(point_type const &, point_type const &, float width);
     void draw_point(point_type const & pt, float radius);
 
     drawer_impl()
@@ -32,7 +32,7 @@ struct drawer_impl : drawer_type
     {
         std::vector<GLfloat>    segments;
         std::vector<GLdouble>   colors;
-        double width;
+        float width;
     };
 
     std::vector<point_buffer_t>     point_buffers;
