@@ -5,11 +5,11 @@
 #include "io/point.h"
 #include "io/segment.h"
 
-namespace visualization 
+namespace visualization
 {
     struct stream_impl : stream_type
     {
-        stream_impl(boost::function<void (const char *)> const & write)    
+        stream_impl(boost::function<void (const char *)> const & write)
             : write_(write)
         {}
 
@@ -35,10 +35,10 @@ namespace visualization
 
         void end_line() {}
 
-    protected: 
+    protected:
         void flush()
         {
-            write_(ss_.str().c_str());                 
+            write_(ss_.str().c_str());
             ss_.str("");
         }
 
@@ -49,7 +49,7 @@ namespace visualization
 
     struct extended_stream_impl : stream_impl
     {
-        extended_stream_impl(boost::function<void (const char *)> const & write)    
+        extended_stream_impl(boost::function<void (const char *)> const & write)
             : stream_impl(write)
         {}
 
@@ -58,8 +58,8 @@ namespace visualization
 
     void endl(stream_type & out) { out.end_line(); }
 
-    printer_impl::printer_impl( boost::function<void (int, int, const char *)>          const & draw_string_corner,
-                                boost::function<void (double, double, const char *)>    const & draw_string_global) 
+    printer_impl::printer_impl( boost::function<void (int, int, const char *)>        const & draw_string_corner,
+                                boost::function<void (float, float, const char *)>    const & draw_string_global)
         : draw_string_global_(draw_string_global)
         , corner_stream_height_indent_(15)
         , corner_stream_(
@@ -82,7 +82,7 @@ namespace visualization
             new stream_impl([pt, this] (const char * str) {
                 draw_string_global_(pt.x, pt.y, str);
             })
-        ); 
+        );
 
         return *global_stream_;
     }

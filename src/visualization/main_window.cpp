@@ -274,7 +274,7 @@ void main_window_t::draw_string(int x, int y, const char * s)
     renderText(x, y, s);
 }
 
-void main_window_t::draw_string_global(int x, int y, const char * s)
+void main_window_t::draw_string_global(float x, float y, const char * s)
 {
     qglColor(Qt::white);
     renderText(x, y, 0, s);
