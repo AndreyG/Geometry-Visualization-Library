@@ -6,21 +6,27 @@
 namespace geom {
 namespace structures {
 
-    struct point_2f
-    {
-        float x, y;
+    template <class Scalar> struct point_2t;
 
-        point_2f(float x, float y)
+    typedef point_2t<float> point_2f;
+    typedef point_2t<int>   point_2i;
+
+    template <class Scalar>
+    struct point_2t
+    {
+        Scalar x, y;
+
+        point_2t(Scalar x, Scalar y)
             : x(x)
             , y(y)
         {}
 
-        point_2f()
+        point_2t()
             : x(0)
             , y(0)
         {}
 
-        point_2f & operator += (vector_2f const & delta)
+        point_2t<Scalar> & operator += (vector_2t<Scalar> const & delta)
         {
             x += delta.x;
             y += delta.y;
@@ -28,7 +34,8 @@ namespace structures {
         }
     };
 
-    inline bool operator < (point_2f const & a, point_2f const & b)
+    template <class Scalar>
+    inline bool operator < (point_2t<Scalar> const & a, point_2t<Scalar> const & b)
     {
         if (a.x == b.x)
             return a.y < b.y;
@@ -36,31 +43,36 @@ namespace structures {
             return a.x < b.x;
     }
 
-    inline bool operator > (point_2f const & a, point_2f const & b)
+    template <class Scalar>
+    bool operator > (point_2t<Scalar> const & a, point_2t<Scalar> const & b)
     {
         return b < a;
     }
 
-    inline bool operator == (point_2f const & a, point_2f const & b)
+    template <class Scalar>
+    bool operator == (point_2t<Scalar> const & a, point_2t<Scalar> const & b)
     {
         return (a.x == b.x) && (a.y == b.y);
     }
 
-    inline bool operator != (point_2f const & a, point_2f const & b)
+    template <class Scalar>
+    bool operator != (point_2t<Scalar> const & a, point_2t<Scalar> const & b)
     {
         return !(a == b);
     }
 
     // в этом месте возможно переполнение!
-    inline vector_2f const operator - (point_2f const & a, point_2f const & b)
+    template <class Scalar>
+    vector_2t<Scalar> const operator - (point_2t<Scalar> const & a, point_2t<Scalar> const & b)
     {
-        return vector_2f(a.x - b.x, a.y - b.y);
+        return vector_2t<Scalar>(a.x - b.x, a.y - b.y);
     }
 
     // в этом месте возможно переполнение!
-    inline point_2f const operator + (point_2f const & pt, vector_2f const & delta)
+    template <class Scalar>
+    point_2t<Scalar> const operator + (point_2t<Scalar> const & pt, vector_2t<Scalar> const & delta)
     {
-        point_2f res(pt);
+        point_2t<Scalar> res(pt);
         res += delta;
         return res;
     }

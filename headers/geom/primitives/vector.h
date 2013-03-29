@@ -7,29 +7,37 @@
 namespace geom {
 namespace structures {
 
-    struct vector_2f
-    {
-        float x, y;
+    template <class Scalar> struct vector_2t;
+    typedef vector_2t<float> vector_2f;
+    typedef vector_2t<int>   vector_2i;
 
-        vector_2f(float x, float y)
+    template <class Scalar>
+    struct vector_2t
+    {
+        Scalar x, y;
+
+        vector_2t(Scalar x, Scalar y)
             : x(x)
             , y(y)
         {}
     };
 
-    inline float operator ^ (vector_2f const & v1, vector_2f const & v2)
+    template <class Scalar>
+    Scalar operator ^ (vector_2t<Scalar> const & v1, vector_2t<Scalar> const & v2)
     {
-        float x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
+        Scalar x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
         return x1 * y2 - x2 * y1;
     }
 
-    inline float operator * (vector_2f const & v1, vector_2f const & v2)
+    template <class Scalar>
+    Scalar operator * (vector_2t<Scalar> const & v1, vector_2t<Scalar> const & v2)
     {
-        float x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
+        Scalar x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
         return x1 * x2 + y1 * y2;
     }
 
-    inline vector_2f const operator - (vector_2f const & v) { return vector_2f(-v.x, -v.y); }
+    template <class Scalar>
+    vector_2t<Scalar> const operator - (vector_2t<Scalar> const & v) { return vector_2t<Scalar>(-v.x, -v.y); }
 
 }}
 

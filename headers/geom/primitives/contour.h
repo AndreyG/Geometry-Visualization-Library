@@ -9,29 +9,36 @@
 namespace geom {
 namespace structures {
 
-    struct contour_2f
+    template <class Scalar>
+    struct contour_2t;
+
+    typedef contour_2t<float> contour_2f;
+    typedef contour_2t<int>   contour_2i;
+
+    template <class Scalar>
+    struct contour_2t
     {
-        contour_2f(contour_2f const &)              = delete;
-        contour_2f& operator = (contour_2f const &) = delete;
+        contour_2t(contour_2t const &)              = delete;
+        contour_2t& operator = (contour_2t const &) = delete;
 
-        contour_2f(contour_2f && cnt);
-        contour_2f& operator = (contour_2f && cnt);
+        contour_2t(contour_2t && cnt);
+        contour_2t& operator = (contour_2t && cnt);
 
-        typedef std::vector<point_2f>::const_iterator const_iterator;
+        typedef typename std::vector<point_2t<Scalar> >::const_iterator const_iterator;
 
         const_iterator begin()    const { return pts_.begin(); }
         const_iterator end()      const { return pts_.end();   }
 
         size_t vertices_num() const { return pts_.size(); }
 
-        point_2f const & operator [] (size_t idx) const { return pts_[idx]; }
+        point_2t<Scalar> const & operator [] (size_t idx) const { return pts_[idx]; }
 
     private:
         friend struct contour_builder_type;
 
-        contour_2f(std::vector<point_2f> && pts);
+        contour_2t(std::vector<point_2t<Scalar> > && pts);
 
-        std::vector<point_2f> pts_;
+        std::vector<point_2t<Scalar> > pts_;
     };
 
     typedef common::range_circulator<contour_2f> contour_circulator;
