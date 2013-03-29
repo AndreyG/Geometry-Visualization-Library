@@ -10,6 +10,7 @@ namespace visualization
 {
 
     using geom::structures::point_2f;
+    using geom::structures::point_2i;
     using geom::structures::segment_2f;
 
     struct stream_type

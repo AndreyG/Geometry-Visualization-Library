@@ -26,6 +26,7 @@ void main_window_t::initializeGL()
 }
 
 using geom::structures::point_2f;
+using geom::structures::point_2i;
 using geom::structures::vector_2f;
 
 namespace
@@ -119,7 +120,7 @@ void main_window_t::paintGL()
         glDisableClientState(GL_COLOR_ARRAY);
     }
 
-    printer_impl printer(   boost::bind(&main_window_t::draw_string,        this, _1, _2, _3),
+    printer_impl printer(   boost::bind(&main_window_t::draw_string,        this, _1, _2),
                             boost::bind(&main_window_t::draw_string_global, this, _1, _2)   );
 
     printer.corner_stream() << "Mouse pos: " << current_pos_ << endl;
@@ -268,10 +269,10 @@ point_2f main_window_t::screen_to_global(QPoint const & screen_pos) const
     return center_ + zoom_ * diff;
 }
 
-void main_window_t::draw_string(int x, int y, const char * s)
+void main_window_t::draw_string(const point_2i &pos, const char * s)
 {
     qglColor(Qt::white);
-    renderText(x, y, s);
+    renderText(pos.x, pos.y, s);
 }
 
 void main_window_t::draw_string_global(const point_2f &pos, const char * s)

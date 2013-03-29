@@ -25,7 +25,7 @@ private:
     point_2f screen_to_global(QPoint const & screen_pos) const;
 
 private:
-    void draw_string(int x, int y, const char * s);
+    void draw_string(point_2i const & pos, const char * s);
     void draw_string_global(point_2f const & pos, const char * s);
 
 private:
