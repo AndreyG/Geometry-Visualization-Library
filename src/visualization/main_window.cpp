@@ -95,7 +95,7 @@ void main_window_t::paintGL()
         glEnableClientState(GL_COLOR_ARRAY);
 
         glVertexPointer (2, GL_FLOAT, 0, &buffer.points[0]);
-        glColorPointer  (3, GL_DOUBLE, 0, &buffer.colors[0]);
+        glColorPointer  (3, GL_FLOAT, 0, &buffer.colors[0]);
 
         glDrawArrays(GL_POINTS, 0, buffer.points.size() / 2);
 
@@ -111,7 +111,7 @@ void main_window_t::paintGL()
         glEnableClientState(GL_COLOR_ARRAY);
 
         glVertexPointer (2, GL_FLOAT, 0, &buffer.segments[0]);
-        glColorPointer  (3, GL_DOUBLE, 0, &buffer.colors[0]);
+        glColorPointer  (3, GL_FLOAT, 0, &buffer.colors[0]);
 
         glDrawArrays(GL_LINES, 0, buffer.segments.size() / 2);
 

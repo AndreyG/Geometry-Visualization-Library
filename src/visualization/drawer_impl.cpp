@@ -28,7 +28,7 @@ void drawer_impl::draw_line(point_type const & a, point_type const & b, float wi
     points_buffer.push_back(b.x);
     points_buffer.push_back(b.y);
 
-    std::vector<GLdouble> & colors_buffer = segment_buffers.back().colors;
+    std::vector<GLfloat> & colors_buffer = segment_buffers.back().colors;
     colors_buffer.push_back(current_color_.redF());
     colors_buffer.push_back(current_color_.greenF());
     colors_buffer.push_back(current_color_.blueF());
@@ -54,7 +54,7 @@ void drawer_impl::draw_point(point_type const & pt, float radius)
     points_buffer.push_back(pt.x);
     points_buffer.push_back(pt.y);
 
-    std::vector<GLdouble> & colors_buffer = point_buffers.back().colors;
+    std::vector<GLfloat> & colors_buffer = point_buffers.back().colors;
     colors_buffer.push_back(current_color_.redF());
     colors_buffer.push_back(current_color_.greenF());
     colors_buffer.push_back(current_color_.blueF());

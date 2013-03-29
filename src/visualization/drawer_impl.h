@@ -24,14 +24,14 @@ struct drawer_impl : drawer_type
     struct point_buffer_t
     {
         std::vector<GLfloat>    points;
-        std::vector<GLdouble>   colors;
+        std::vector<GLfloat>    colors;
         float radius;
     };
 
     struct segment_buffer_t
     {
         std::vector<GLfloat>    segments;
-        std::vector<GLdouble>   colors;
+        std::vector<GLfloat>    colors;
         float width;
     };
 
