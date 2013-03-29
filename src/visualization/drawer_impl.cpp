@@ -21,8 +21,8 @@ void drawer_impl::draw_line(point_type const & a, point_type const & b, double w
         segment_buffers.push_back(segment_buffer_t());
         segment_buffers.back().width = width;
     }
-    
-    std::vector<GLint> & points_buffer = segment_buffers.back().segments;
+
+    std::vector<GLfloat> & points_buffer = segment_buffers.back().segments;
     points_buffer.push_back(a.x);
     points_buffer.push_back(a.y);
     points_buffer.push_back(b.x);
@@ -42,15 +42,15 @@ void drawer_impl::draw_line(segment_type const & seg, double width)
     draw_line(seg[0], seg[1], width);
 }
 
-void drawer_impl::draw_point(point_type const & pt, uint8 radius)
+void drawer_impl::draw_point(point_type const & pt, float radius)
 {
     if (point_buffers.empty() || (point_buffers.back().radius != radius))
     {
         point_buffers.push_back(point_buffer_t());
         point_buffers.back().radius = radius;
     }
-    
-    std::vector<GLint> & points_buffer = point_buffers.back().points;
+
+    std::vector<GLfloat> & points_buffer = point_buffers.back().points;
     points_buffer.push_back(pt.x);
     points_buffer.push_back(pt.y);
 

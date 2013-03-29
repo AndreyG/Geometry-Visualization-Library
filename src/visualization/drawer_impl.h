@@ -1,5 +1,5 @@
-#ifndef _DRAWER_IMPL_H_ 
-#define _DRAWER_IMPL_H_ 
+#ifndef _DRAWER_IMPL_H_
+#define _DRAWER_IMPL_H_
 
 #include <QtOpenGL>
 
@@ -13,7 +13,7 @@ struct drawer_impl : drawer_type
     void set_color(QColor const & c);
     void draw_line(segment_type const &, double width);
     void draw_line(point_type const &, point_type const &, double width);
-    void draw_point(point_type const & pt, uint8 radius);
+    void draw_point(point_type const & pt, float radius);
 
     drawer_impl()
         : current_color_ (Qt::black)
@@ -23,14 +23,14 @@ struct drawer_impl : drawer_type
 
     struct point_buffer_t
     {
-        std::vector<GLint>      points;
+        std::vector<GLfloat>    points;
         std::vector<GLdouble>   colors;
-        size_t radius;
+        float radius;
     };
 
     struct segment_buffer_t
     {
-        std::vector<GLint>      segments;
+        std::vector<GLfloat>    segments;
         std::vector<GLdouble>   colors;
         double width;
     };

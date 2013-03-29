@@ -2,6 +2,7 @@
 #define _RANGE_H_
 
 #include "type_aliases.h"
+#include <limits>
 
 namespace geom {
 namespace structures {
@@ -9,9 +10,9 @@ namespace structures {
     // closed range
     struct range_type
     {
-        int32 inf, sup;
+        float inf, sup;
 
-        range_type(int32 inf, int32 sup)
+        range_type(float inf, float sup)
             : inf(inf)
             , sup(sup)
         {}
@@ -23,11 +24,11 @@ namespace structures {
 
         bool is_empty() const { return inf > sup; }
 
-        bool contains(int32 x) const { return (inf <= x) && (x <= sup); }
+        bool contains(float x) const { return (inf <= x) && (x <= sup); }
 
-        static range_type maximal() 
-        { 
-            static const int32 max_val = (1 << 30) - 1;
+        static range_type maximal()
+        {
+            static const float max_val = std::numeric_limits<float>::max();
             return range_type(-max_val, max_val);
         }
     };
@@ -37,12 +38,12 @@ namespace structures {
         return range_type(std::max(a.inf, b.inf), std::min(a.sup, b.sup));
     }
 
-    inline int32 center(range_type const & r)
+    inline float center(range_type const & r)
     {
-        return (int64(1) + r.inf + r.sup) / 2;
+        return .5f + r.inf / 2.f + r.sup / 2.f;
     }
 
-    inline int32 size(range_type const & r)
+    inline float size(range_type const & r)
     {
         return r.sup - r.inf;
     }

@@ -30,14 +30,14 @@ using geom::structures::vector_type;
 
 namespace
 {
-    int32 limit(geom::structures::range_type const & range, double v)
+    float limit(geom::structures::range_type const & range, double v)
     {
         if (v < double(range.inf))
             return range.inf;
         else if (v > double(range.sup))
             return range.sup;
         else
-            return int32(v);
+            return float(v);
     }
 
     point_type limit(point_type const & pt)
@@ -52,7 +52,7 @@ namespace
     }
 
     // в этом месте возможно переполнение!
-    vector_type const operator * (double alpha, vector_type const & v) 
+    vector_type const operator * (double alpha, vector_type const & v)
     {
         using geom::structures::rectangle_type;
         rectangle_type max_rect = rectangle_type::maximal();
@@ -86,15 +86,15 @@ void main_window_t::resizeGL(int screen_w, int screen_h)
 void main_window_t::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    
+
     for (drawer_impl::point_buffer_t const & buffer : drawer_.point_buffers)
     {
         glPointSize(buffer.radius);
 
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
-        
-        glVertexPointer (2, GL_INT, 0, &buffer.points[0]);
+
+        glVertexPointer (2, GL_FLOAT, 0, &buffer.points[0]);
         glColorPointer  (3, GL_DOUBLE, 0, &buffer.colors[0]);
 
         glDrawArrays(GL_POINTS, 0, buffer.points.size() / 2);
@@ -106,15 +106,15 @@ void main_window_t::paintGL()
     for (drawer_impl::segment_buffer_t const & buffer : drawer_.segment_buffers)
     {
         glLineWidth(buffer.width);
-        
+
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
 
-        glVertexPointer (2, GL_INT, 0, &buffer.segments[0]);
+        glVertexPointer (2, GL_FLOAT, 0, &buffer.segments[0]);
         glColorPointer  (3, GL_DOUBLE, 0, &buffer.colors[0]);
 
         glDrawArrays(GL_LINES, 0, buffer.segments.size() / 2);
-        
+
         glDisableClientState(GL_VERTEX_ARRAY);
         glDisableClientState(GL_COLOR_ARRAY);
     }
@@ -181,7 +181,7 @@ void main_window_t::mouseMoveEvent(QMouseEvent * e)
 
     if (start_point_ )
     {
-        const int w = size().width(); 
+        const int w = size().width();
         const int h = size().height();
 
         point_type pos(e->pos().x(), e->pos().y());
@@ -245,7 +245,7 @@ void main_window_t::keyReleaseEvent(QKeyEvent * event)
     }
     else if ((event->key() == Qt::Key_I) && (event->modifiers() == Qt::ControlModifier))
     {
-        auto txt = boost::lexical_cast<std::string>(current_pos_); 
+        auto txt = boost::lexical_cast<std::string>(current_pos_);
         QApplication::clipboard()->setText(txt.c_str());
     }
     else if (viewer_->on_key(event->key()))

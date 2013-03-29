@@ -8,9 +8,9 @@ namespace structures {
 
     struct point_type
     {
-        int32 x, y;
+        float x, y;
 
-        point_type(int32 x, int32 y)
+        point_type(float x, float y)
             : x(x)
             , y(y)
         {}

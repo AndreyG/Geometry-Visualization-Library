@@ -6,7 +6,7 @@
 #include "geom/primitives/point.h"
 #include "geom/primitives/segment.h"
 
-namespace visualization 
+namespace visualization
 {
 
     using geom::structures::point_type;
@@ -14,7 +14,7 @@ namespace visualization
 
     struct stream_type
     {
-        typedef void (* manipulator_type)(stream_type&); 
+        typedef void (* manipulator_type)(stream_type&);
 
 #define PRINT(type) virtual stream_type & operator << (type) = 0;
         PRINT(const char *)
@@ -24,7 +24,7 @@ namespace visualization
         PRINT(segment_type const &)
         PRINT(manipulator_type)
 #undef PRINT
-        
+
         virtual void end_line() = 0;
 
         virtual ~stream_type() {};
@@ -37,7 +37,7 @@ namespace visualization
         virtual void set_color  (QColor const &)                                            = 0;
         virtual void draw_line  (segment_type const &,                   double width  = 1) = 0;
         virtual void draw_line  (point_type const &, point_type const &, double width  = 1) = 0;
-        virtual void draw_point (point_type const &,                     uint8  radius = 1) = 0;
+        virtual void draw_point (point_type const &,                     float  radius = 1) = 0;
 
         virtual ~drawer_type() {};
     };
@@ -57,7 +57,7 @@ namespace visualization
 
         virtual void set_window(QWidget *)                      = 0;
 
-        virtual bool on_key         (int key)                   = 0; 
+        virtual bool on_key         (int key)                   = 0;
         virtual bool on_double_click(point_type const & pos)    = 0;
         virtual bool on_move        (point_type const & pos)    = 0;
         virtual bool on_press       (point_type const & pos)    = 0;

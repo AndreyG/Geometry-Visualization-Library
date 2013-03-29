@@ -9,23 +9,23 @@ namespace structures {
 
     struct vector_type
     {
-        int32 x, y;
+        float x, y;
 
-        vector_type(int32 x, int32 y)
+        vector_type(float x, float y)
             : x(x)
             , y(y)
         {}
     };
 
-    inline int64 operator ^ (vector_type const & v1, vector_type const & v2)
+    inline float operator ^ (vector_type const & v1, vector_type const & v2)
     {
-        int64 x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
+        float x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
         return x1 * y2 - x2 * y1;
     }
 
-    inline int64 operator * (vector_type const & v1, vector_type const & v2)
+    inline float operator * (vector_type const & v1, vector_type const & v2)
     {
-        int64 x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
+        float x1 = v1.x, y1 = v1.y, x2 = v2.x, y2 = v2.y;
         return x1 * x2 + y1 * y2;
     }
 
