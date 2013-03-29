@@ -58,8 +58,8 @@ namespace visualization
 
     void endl(stream_type & out) { out.end_line(); }
 
-    printer_impl::printer_impl( boost::function<void (int, int, const char *)>        const & draw_string_corner,
-                                boost::function<void (float, float, const char *)>    const & draw_string_global)
+    printer_impl::printer_impl(boost::function<void (int, int, const char *)>         const & draw_string_corner,
+                               boost::function<void (const point_2f &, const char *)> const & draw_string_global)
         : draw_string_global_(draw_string_global)
         , corner_stream_height_indent_(15)
         , corner_stream_(
@@ -80,7 +80,7 @@ namespace visualization
     {
         global_stream_.reset(
             new stream_impl([pt, this] (const char * str) {
-                draw_string_global_(pt.x, pt.y, str);
+                draw_string_global_(pt, str);
             })
         );
 

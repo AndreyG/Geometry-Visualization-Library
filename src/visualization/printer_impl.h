@@ -11,11 +11,11 @@ struct printer_impl : printer_type
     stream_type& corner_stream();
     stream_type& global_stream(point_2f const & pt);
 
-    printer_impl(   boost::function<void (int, int, const char *)>          const & draw_string_corner,
-                    boost::function<void (float, float, const char *)>    const & draw_string_global);
+    printer_impl(   boost::function<void (int, int, const char *)>            const & draw_string_corner,
+                    boost::function<void (point_2f const &, const char *)>    const & draw_string_global);
 
 private:
-    boost::function<void (float, float, const char *)>    draw_string_global_;
+    boost::function<void (point_2f const &, const char *)>    draw_string_global_;
     int corner_stream_height_indent_;
 
     boost::scoped_ptr<stream_type> corner_stream_;

@@ -120,7 +120,7 @@ void main_window_t::paintGL()
     }
 
     printer_impl printer(   boost::bind(&main_window_t::draw_string,        this, _1, _2, _3),
-                            boost::bind(&main_window_t::draw_string_global, this, _1, _2, _3)   );
+                            boost::bind(&main_window_t::draw_string_global, this, _1, _2)   );
 
     printer.corner_stream() << "Mouse pos: " << current_pos_ << endl;
 
@@ -274,8 +274,8 @@ void main_window_t::draw_string(int x, int y, const char * s)
     renderText(x, y, s);
 }
 
-void main_window_t::draw_string_global(float x, float y, const char * s)
+void main_window_t::draw_string_global(const point_2f &pos, const char * s)
 {
     qglColor(Qt::white);
-    renderText(x, y, 0, s);
+    renderText(pos.x, pos.y, 0, s);
 }

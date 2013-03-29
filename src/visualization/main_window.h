@@ -26,7 +26,7 @@ private:
 
 private:
     void draw_string(int x, int y, const char * s);
-    void draw_string_global(float x, float y, const char * s);
+    void draw_string_global(point_2f const & pos, const char * s);
 
 private:
     viewer_type * viewer_;
