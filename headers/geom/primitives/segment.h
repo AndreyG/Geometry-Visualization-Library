@@ -9,17 +9,17 @@
 namespace geom {
 namespace structures {
 
-    struct segment_type
+    struct segment_2f
     {
-        segment_type() {}
+        segment_2f() {}
 
-        segment_type(point_type const & beg, point_type const & end)
+        segment_2f(point_2f const & beg, point_2f const & end)
             : beg(beg)
             , end(end)
         {}
 
-        point_type const & operator[] (size_t i) const 
-        { 
+        point_2f const & operator[] (size_t i) const
+        {
             switch (i)
             {
             case 0: return beg;
@@ -29,8 +29,8 @@ namespace structures {
             }
         }
 
-        point_type & operator[] (size_t i) 
-        { 
+        point_2f & operator[] (size_t i)
+        {
             switch (i)
             {
             case 0: return beg;
@@ -41,18 +41,18 @@ namespace structures {
         }
 
     private:
-        point_type beg, end;
+        point_2f beg, end;
     };
 
-    inline point_type const & min(segment_type const & seg) { return std::min(seg[0], seg[1]); }
-    inline point_type const & max(segment_type const & seg) { return std::max(seg[0], seg[1]); }
+    inline point_2f const & min(segment_2f const & seg) { return std::min(seg[0], seg[1]); }
+    inline point_2f const & max(segment_2f const & seg) { return std::max(seg[0], seg[1]); }
 
-    inline bool operator == (segment_type const & a, segment_type const & b)
+    inline bool operator == (segment_2f const & a, segment_2f const & b)
     {
         return (a[0] == b[0]) && (a[1] == b[1]);
     }
 
-    inline bool operator != (segment_type const & a, segment_type const & b)
+    inline bool operator != (segment_2f const & a, segment_2f const & b)
     {
         return !(a == b);
     }

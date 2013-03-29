@@ -22,7 +22,7 @@ private:
     void keyReleaseEvent(QKeyEvent *);
 
     void resize_impl(int, int);
-    point_type screen_to_global(QPoint const & screen_pos) const;
+    point_2f screen_to_global(QPoint const & screen_pos) const;
 
 private:
     void draw_string(int x, int y, const char * s);
@@ -31,10 +31,10 @@ private:
 private:
     viewer_type * viewer_;
 
-    point_type center_;
-    point_type size_;
-    point_type current_pos_;
+    point_2f center_;
+    point_2f size_;
+    point_2f current_pos_;
     double  zoom_;
-    optional<point_type> start_point_;
+    optional<point_2f> start_point_;
     drawer_impl drawer_;
 };

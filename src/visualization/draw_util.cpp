@@ -6,13 +6,13 @@
 
 #include "io/point.h"
 
-using geom::structures::rectangle_type;
-using geom::structures::contour_type;
+using geom::structures::rectangle_2f;
+using geom::structures::contour_2f;
 using geom::structures::contour_circulator;
 
 namespace visualization
 {
-    void draw(drawer_type & drawer, rectangle_type const & rect)
+    void draw(drawer_type & drawer, rectangle_2f const & rect)
     {
         drawer.draw_line(rect.corner(0, 0), rect.corner(1, 0));
         drawer.draw_line(rect.corner(1, 0), rect.corner(1, 1));
@@ -20,17 +20,17 @@ namespace visualization
         drawer.draw_line(rect.corner(0, 1), rect.corner(0, 0));
     }
 
-    void draw(drawer_type & drawer, contour_type const & cnt, bool draw_vertices)
+    void draw(drawer_type & drawer, contour_2f const & cnt, bool draw_vertices)
     {
         contour_circulator beg(cnt), it = beg;
 
         do
         {
-            point_type pt = *it;
+            point_2f pt = *it;
             if (draw_vertices)
                 drawer.draw_point(pt, 3);
             ++it;
-            drawer.draw_line(segment_type(pt, *it));
+            drawer.draw_line(segment_2f(pt, *it));
         }
         while (it != beg);
     }

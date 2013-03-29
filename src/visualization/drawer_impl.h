@@ -11,9 +11,9 @@ namespace visualization
 struct drawer_impl : drawer_type
 {
     void set_color(QColor const & c);
-    void draw_line(segment_type const &, float width);
-    void draw_line(point_type const &, point_type const &, float width);
-    void draw_point(point_type const & pt, float radius);
+    void draw_line(segment_2f const &, float width);
+    void draw_line(point_2f const &, point_2f const &, float width);
+    void draw_point(point_2f const & pt, float radius);
 
     drawer_impl()
         : current_color_ (Qt::black)

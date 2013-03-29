@@ -9,7 +9,7 @@ namespace visualization
 struct printer_impl : printer_type
 {
     stream_type& corner_stream();
-    stream_type& global_stream(point_type const & pt);
+    stream_type& global_stream(point_2f const & pt);
 
     printer_impl(   boost::function<void (int, int, const char *)>          const & draw_string_corner,
                     boost::function<void (double, double, const char *)>    const & draw_string_global);

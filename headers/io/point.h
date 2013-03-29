@@ -6,8 +6,8 @@
 namespace geom {
 namespace structures {
 
-    std::istream & operator >> (std::istream & in, point_type & pt);
-    std::ostream & operator << (std::ostream & out, point_type const & pt);
+    std::istream & operator >> (std::istream & in, point_2f & pt);
+    std::ostream & operator << (std::ostream & out, point_2f const & pt);
 
 }}
 

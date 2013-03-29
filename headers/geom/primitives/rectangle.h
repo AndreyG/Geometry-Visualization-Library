@@ -7,47 +7,47 @@
 namespace geom {
 namespace structures {
 
-    struct rectangle_type
+    struct rectangle_2f
     {
-        range_type x, y;
+        range_f x, y;
 
-        rectangle_type(range_type const & x, range_type const & y)
+        rectangle_2f(range_f const & x, range_f const & y)
             : x(x)
             , y(y)
         {}
 
-        rectangle_type() {}
+        rectangle_2f() {}
 
         bool is_empty() const
         {
             return x.is_empty() && y.is_empty();
         }
 
-        bool contains(point_type const & pt) const
+        bool contains(point_2f const & pt) const
         {
             return x.contains(pt.x) && y.contains(pt.y);
         }
 
-        point_type corner(size_t h, size_t v) const
+        point_2f corner(size_t h, size_t v) const
         {
-            return point_type(  (h == 0) ? x.inf : x.sup,
+            return point_2f(  (h == 0) ? x.inf : x.sup,
                                 (v == 0) ? y.inf : y.sup  );
         }
 
-        static rectangle_type maximal()
+        static rectangle_2f maximal()
         {
-            return rectangle_type(range_type::maximal(), range_type::maximal());
+            return rectangle_2f(range_f::maximal(), range_f::maximal());
         }
     };
 
-    inline rectangle_type const operator & (rectangle_type const & a, rectangle_type const & b)
+    inline rectangle_2f const operator & (rectangle_2f const & a, rectangle_2f const & b)
     {
-        return rectangle_type(a.x & b.x, a.y & b.y);
+        return rectangle_2f(a.x & b.x, a.y & b.y);
     }
 
-    inline point_type center(rectangle_type const & rect)
+    inline point_2f center(rectangle_2f const & rect)
     {
-        return point_type(center(rect.x), center(rect.y));
+        return point_2f(center(rect.x), center(rect.y));
     }
 }}
 

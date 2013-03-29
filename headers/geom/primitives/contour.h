@@ -9,32 +9,32 @@
 namespace geom {
 namespace structures {
 
-    struct contour_type
+    struct contour_2f
     {
-        contour_type(contour_type const &)              = delete;
-        contour_type& operator = (contour_type const &) = delete;
+        contour_2f(contour_2f const &)              = delete;
+        contour_2f& operator = (contour_2f const &) = delete;
 
-        contour_type(contour_type && cnt);
-        contour_type& operator = (contour_type && cnt);
+        contour_2f(contour_2f && cnt);
+        contour_2f& operator = (contour_2f && cnt);
 
-        typedef std::vector<point_type>::const_iterator const_iterator;
+        typedef std::vector<point_2f>::const_iterator const_iterator;
 
         const_iterator begin()    const { return pts_.begin(); }
         const_iterator end()      const { return pts_.end();   }
 
         size_t vertices_num() const { return pts_.size(); }
 
-        point_type const & operator [] (size_t idx) const { return pts_[idx]; }
+        point_2f const & operator [] (size_t idx) const { return pts_[idx]; }
 
     private:
         friend struct contour_builder_type;
 
-        contour_type(std::vector<point_type> && pts);
+        contour_2f(std::vector<point_2f> && pts);
 
-        std::vector<point_type> pts_;
+        std::vector<point_2f> pts_;
     };
 
-    typedef common::range_circulator<contour_type> contour_circulator;
+    typedef common::range_circulator<contour_2f> contour_circulator;
 
 }}
 

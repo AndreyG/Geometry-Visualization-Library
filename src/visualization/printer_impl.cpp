@@ -22,8 +22,8 @@ namespace visualization
         PRINT(const char *)
         PRINT(std::string const &)
         PRINT(size_t)
-        PRINT(point_type const &)
-        PRINT(segment_type const &)
+        PRINT(point_2f const &)
+        PRINT(segment_2f const &)
 #undef PRINT
         stream_type & operator << (manipulator_type f)
         {
@@ -76,7 +76,7 @@ namespace visualization
         return *corner_stream_;
     }
 
-    stream_type & printer_impl::global_stream(point_type const & pt)
+    stream_type & printer_impl::global_stream(point_2f const & pt)
     {
         global_stream_.reset(
             new stream_impl([pt, this] (const char * str) {

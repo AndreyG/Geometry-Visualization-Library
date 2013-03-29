@@ -25,12 +25,12 @@ void main_window_t::initializeGL()
     //glEnable(GL_PROGRAM_POINT_SIZE);
 }
 
-using geom::structures::point_type;
-using geom::structures::vector_type;
+using geom::structures::point_2f;
+using geom::structures::vector_2f;
 
 namespace
 {
-    float limit(geom::structures::range_type const & range, double v)
+    float limit(geom::structures::range_f const & range, double v)
     {
         if (v < double(range.inf))
             return range.inf;
@@ -40,24 +40,24 @@ namespace
             return float(v);
     }
 
-    point_type limit(point_type const & pt)
+    point_2f limit(point_2f const & pt)
     {
-        using geom::structures::rectangle_type;
-        rectangle_type max_rect = rectangle_type::maximal();
+        using geom::structures::rectangle_2f;
+        rectangle_2f max_rect = rectangle_2f::maximal();
 
-        return point_type(
+        return point_2f(
             limit(max_rect.x, pt.x),
             limit(max_rect.y, pt.y)
         );
     }
 
     // в этом месте возможно переполнение!
-    vector_type const operator * (double alpha, vector_type const & v)
+    vector_2f const operator * (double alpha, vector_2f const & v)
     {
-        using geom::structures::rectangle_type;
-        rectangle_type max_rect = rectangle_type::maximal();
+        using geom::structures::rectangle_2f;
+        rectangle_2f max_rect = rectangle_2f::maximal();
 
-        return vector_type(
+        return vector_2f(
             limit(max_rect.x, v.x * alpha),
             limit(max_rect.y, v.y * alpha)
         );
@@ -69,10 +69,10 @@ void main_window_t::resize_impl(int screen_w, int screen_h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    vector_type size = (zoom_ / 2) * vector_type(screen_w, screen_h);
+    vector_2f size = (zoom_ / 2) * vector_2f(screen_w, screen_h);
 
-    point_type left_bottom = center_ + (-size);
-    point_type right_top   = center_ + size;
+    point_2f left_bottom = center_ + (-size);
+    point_2f right_top   = center_ + size;
 
     glOrtho(left_bottom.x, right_top.x, left_bottom.y, right_top.y, -1.0, 1.0);
     glViewport(0, 0, screen_w, screen_h);
@@ -143,12 +143,12 @@ void main_window_t::wheelEvent(QWheelEvent * e)
             zoom_ /= 1.1;
     }
 
-    point_type pos(e->pos().x(), e->pos().y());
-    point_type sz(size().width() / 2, size().height() / 2);
+    point_2f pos(e->pos().x(), e->pos().y());
+    point_2f sz(size().width() / 2, size().height() / 2);
 
-    vector_type diff = pos - sz;
+    vector_2f diff = pos - sz;
 
-    center_ += (old_zoom - zoom_) * vector_type(diff.x, -diff.y);
+    center_ += (old_zoom - zoom_) * vector_2f(diff.x, -diff.y);
     center_ = limit(center_);
 
     e->accept();
@@ -184,12 +184,12 @@ void main_window_t::mouseMoveEvent(QMouseEvent * e)
         const int w = size().width();
         const int h = size().height();
 
-        point_type pos(e->pos().x(), e->pos().y());
-        point_type sz(w / 2, h / 2);
+        point_2f pos(e->pos().x(), e->pos().y());
+        point_2f sz(w / 2, h / 2);
 
-        using geom::structures::vector_type;
+        using geom::structures::vector_2f;
 
-        vector_type diff = pos - sz;
+        vector_2f diff = pos - sz;
         diff.x = -diff.x;
 
         center_ = *start_point_ + zoom_ * diff;
@@ -235,7 +235,7 @@ void main_window_t::keyReleaseEvent(QKeyEvent * event)
     {
         std::stringstream ss;
         ss << QInputDialog::getText(this, "center selection", "type point: ").toStdString();
-        point_type old_pos = current_pos_;
+        point_2f old_pos = current_pos_;
         ss >> current_pos_;
 
         center_ += (current_pos_ - old_pos);
@@ -257,12 +257,12 @@ void main_window_t::keyReleaseEvent(QKeyEvent * event)
     event->accept();
 }
 
-point_type main_window_t::screen_to_global(QPoint const & screen_pos) const
+point_2f main_window_t::screen_to_global(QPoint const & screen_pos) const
 {
-    point_type pos(screen_pos.x(), screen_pos.y());
-    point_type sz(size().width() / 2, size().height() / 2);
+    point_2f pos(screen_pos.x(), screen_pos.y());
+    point_2f sz(size().width() / 2, size().height() / 2);
 
-    vector_type diff = pos - sz;
+    vector_2f diff = pos - sz;
     diff.y = -diff.y;
 
     return center_ + zoom_ * diff;

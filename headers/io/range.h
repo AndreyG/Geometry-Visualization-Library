@@ -6,7 +6,7 @@
 namespace geom {
 namespace structures {
 
-    std::ostream & operator << (std::ostream & out, range_type const &);
+    std::ostream & operator << (std::ostream & out, range_f const &);
 
 }}
 

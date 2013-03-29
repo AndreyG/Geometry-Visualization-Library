@@ -6,21 +6,21 @@
 namespace geom {
 namespace structures {
 
-    struct point_type
+    struct point_2f
     {
         float x, y;
 
-        point_type(float x, float y)
+        point_2f(float x, float y)
             : x(x)
             , y(y)
         {}
 
-        point_type()
+        point_2f()
             : x(0)
             , y(0)
         {}
 
-        point_type & operator += (vector_type const & delta)
+        point_2f & operator += (vector_2f const & delta)
         {
             x += delta.x;
             y += delta.y;
@@ -28,7 +28,7 @@ namespace structures {
         }
     };
 
-    inline bool operator < (point_type const & a, point_type const & b)
+    inline bool operator < (point_2f const & a, point_2f const & b)
     {
         if (a.x == b.x)
             return a.y < b.y;
@@ -36,31 +36,31 @@ namespace structures {
             return a.x < b.x;
     }
 
-    inline bool operator > (point_type const & a, point_type const & b)
+    inline bool operator > (point_2f const & a, point_2f const & b)
     {
         return b < a;
     }
 
-    inline bool operator == (point_type const & a, point_type const & b)
+    inline bool operator == (point_2f const & a, point_2f const & b)
     {
         return (a.x == b.x) && (a.y == b.y);
     }
 
-    inline bool operator != (point_type const & a, point_type const & b)
+    inline bool operator != (point_2f const & a, point_2f const & b)
     {
         return !(a == b);
     }
 
     // в этом месте возможно переполнение!
-    inline vector_type const operator - (point_type const & a, point_type const & b)
+    inline vector_2f const operator - (point_2f const & a, point_2f const & b)
     {
-        return vector_type(a.x - b.x, a.y - b.y);
+        return vector_2f(a.x - b.x, a.y - b.y);
     }
 
     // в этом месте возможно переполнение!
-    inline point_type const operator + (point_type const & pt, vector_type const & delta)
+    inline point_2f const operator + (point_2f const & pt, vector_2f const & delta)
     {
-        point_type res(pt);
+        point_2f res(pt);
         res += delta;
         return res;
     }

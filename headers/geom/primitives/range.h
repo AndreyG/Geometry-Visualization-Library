@@ -8,16 +8,16 @@ namespace geom {
 namespace structures {
 
     // closed range
-    struct range_type
+    struct range_f
     {
         float inf, sup;
 
-        range_type(float inf, float sup)
+        range_f(float inf, float sup)
             : inf(inf)
             , sup(sup)
         {}
 
-        range_type()
+        range_f()
             : inf(0)
             , sup(-1)
         {}
@@ -26,24 +26,24 @@ namespace structures {
 
         bool contains(float x) const { return (inf <= x) && (x <= sup); }
 
-        static range_type maximal()
+        static range_f maximal()
         {
             static const float max_val = std::numeric_limits<float>::max();
-            return range_type(-max_val, max_val);
+            return range_f(-max_val, max_val);
         }
     };
 
-    inline range_type const operator & (range_type const & a, range_type const & b)
+    inline range_f const operator & (range_f const & a, range_f const & b)
     {
-        return range_type(std::max(a.inf, b.inf), std::min(a.sup, b.sup));
+        return range_f(std::max(a.inf, b.inf), std::min(a.sup, b.sup));
     }
 
-    inline float center(range_type const & r)
+    inline float center(range_f const & r)
     {
         return .5f + r.inf / 2.f + r.sup / 2.f;
     }
 
-    inline float size(range_type const & r)
+    inline float size(range_f const & r)
     {
         return r.sup - r.inf;
     }
