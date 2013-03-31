@@ -1,7 +1,6 @@
 #ifndef _RANGE_H_
 #define _RANGE_H_
 
-#include "type_aliases.h"
 #include <limits>
 
 namespace geom {

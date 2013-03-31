@@ -1,7 +1,6 @@
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
-#include "type_aliases.h"
 #include "geom/primitives/range.h"
 
 namespace geom {
