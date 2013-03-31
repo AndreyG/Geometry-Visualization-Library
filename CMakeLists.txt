@@ -6,6 +6,9 @@ find_package(OpenGL REQUIRED)
 find_package(Qt4 COMPONENTS QtOpenGL QtCore QtGui REQUIRED)
 include(${QT_USE_FILE})
 
+find_package(Boost REQUIRED)
+
+
 set(SOURCES 
    src/io/primitives.cpp
    src/visualization/drawer_impl.cpp
@@ -15,7 +18,7 @@ set(SOURCES
    src/visualization/draw_util.cpp
 )
 
-include_directories("headers/" "src/")
+include_directories("headers/" "src/" ${Boost_INCLUDE_DIR})
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wall")
 
