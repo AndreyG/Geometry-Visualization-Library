@@ -1,27 +1,22 @@
-#ifndef _PRINTER_IMPL_H_
-#define _PRINTER_IMPL_H_
+#pragma once
 
 #include "visualization/viewer.h"
 
 namespace visualization
 {
+   struct printer_impl : printer_type
+   {
+      stream_type& corner_stream();
+      stream_type& global_stream(point_2f const & pt);
 
-struct printer_impl : printer_type
-{
-    stream_type& corner_stream();
-    stream_type& global_stream(point_2f const & pt);
+      printer_impl(   boost::function<void (point_2i const &, const char *)>    const & draw_string_corner,
+                      boost::function<void (point_2f const &, const char *)>    const & draw_string_global);
 
-    printer_impl(   boost::function<void (point_2i const &, const char *)>    const & draw_string_corner,
-                    boost::function<void (point_2f const &, const char *)>    const & draw_string_global);
+   private:
+      boost::function<void (point_2f const &, const char *)>    draw_string_global_;
+      int corner_stream_height_indent_;
 
-private:
-    boost::function<void (point_2f const &, const char *)>    draw_string_global_;
-    int corner_stream_height_indent_;
-
-    boost::scoped_ptr<stream_type> corner_stream_;
-    boost::scoped_ptr<stream_type> global_stream_;
-};
-
+      boost::scoped_ptr<stream_type> corner_stream_;
+      boost::scoped_ptr<stream_type> global_stream_;
+   };
 }
-
-#endif /*_PRINTER_IMPL_H_*/

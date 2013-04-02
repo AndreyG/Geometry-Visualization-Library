@@ -1,10 +1,12 @@
+#pragma once
+
 #include "visualization/viewer.h"
 
-#include "geom/primitives/rectangle.h"
-#include "geom/primitives/contour.h"
+#include "cg/primitives/rectangle.h"
+#include "cg/primitives/contour.h"
 
 namespace visualization
 {
-    void draw(drawer_type & drawer, geom::structures::rectangle_2f    const & rect);
-    void draw(drawer_type & drawer, geom::structures::contour_2f      const & cnt, bool draw_vertices = false);
+   void draw(drawer_type & drawer, cg::rectangle_2f    const & rect);
+   void draw(drawer_type & drawer, cg::contour_2f      const & cnt, bool draw_vertices = false);
 }

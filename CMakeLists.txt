@@ -10,7 +10,6 @@ find_package(Boost REQUIRED)
 
 
 set(SOURCES 
-   src/io/primitives.cpp
    src/visualization/drawer_impl.cpp
    src/visualization/printer_impl.cpp
    src/visualization/main_window.cpp
