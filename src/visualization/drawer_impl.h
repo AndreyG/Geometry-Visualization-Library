@@ -2,8 +2,9 @@
 
 #include <QtOpenGL>
 
-#include "visualization/viewer.h"
+#include "cg/visualization/viewer.h"
 
+namespace cg {
 namespace visualization
 {
    struct drawer_impl : drawer_type
@@ -39,4 +40,4 @@ namespace visualization
    private:
       QColor current_color_;
    };
-}
+}}

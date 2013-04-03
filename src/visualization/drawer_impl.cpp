@@ -1,5 +1,6 @@
 #include "drawer_impl.h"
 
+namespace cg {
 namespace visualization
 {
    void drawer_impl::clear()
@@ -58,4 +59,4 @@ namespace visualization
       colors_buffer.push_back(current_color_.greenF());
       colors_buffer.push_back(current_color_.blueF());
    }
-}
+}}

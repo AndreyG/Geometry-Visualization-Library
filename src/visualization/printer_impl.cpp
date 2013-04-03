@@ -5,8 +5,9 @@
 #include "cg/io/point.h"
 #include "cg/io/segment.h"
 
-namespace visualization {
-
+namespace cg {
+namespace visualization
+{
    struct stream_impl : stream_type
    {
       stream_impl(boost::function<void (const char *)> const & write)
@@ -86,5 +87,4 @@ namespace visualization {
 
       return *global_stream_;
    }
-
-}
+}}

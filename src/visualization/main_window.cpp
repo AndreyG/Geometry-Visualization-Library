@@ -25,8 +25,6 @@ void main_window_t::initializeGL()
    //glEnable(GL_PROGRAM_POINT_SIZE);
 }
 
-using cg::point_2f;
-using cg::point_2i;
 using cg::vector_2f;
 
 namespace

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "visualization/viewer.h"
+#include "viewer.h"
 
+namespace cg {
 namespace visualization
 {
    struct viewer_adapter : viewer_type
@@ -22,4 +23,4 @@ namespace visualization
    private:
       QWidget * wnd_;
    };
-}
+}}

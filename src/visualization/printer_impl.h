@@ -1,7 +1,8 @@
 #pragma once
 
-#include "visualization/viewer.h"
+#include "cg/visualization/viewer.h"
 
+namespace cg {
 namespace visualization
 {
    struct printer_impl : printer_type
@@ -19,4 +20,4 @@ namespace visualization
       boost::scoped_ptr<stream_type> corner_stream_;
       boost::scoped_ptr<stream_type> global_stream_;
    };
-}
+}}

@@ -1,8 +1,13 @@
-#include "visualization/viewer.h"
+#pragma once
+
+#include "cg/visualization/viewer.h"
 
 #include "drawer_impl.h"
 
-using namespace visualization;
+using cg::point_2f;
+using cg::point_2i;
+
+using namespace cg::visualization;
 
 struct main_window_t : QGLWidget
 {

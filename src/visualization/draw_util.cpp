@@ -1,15 +1,12 @@
 #include "stdafx.h"
 
-#include "visualization/draw_util.h"
+#include "cg/visualization/draw_util.h"
 
-#include "common/range.h"
+#include "cg/common/range.h"
 
 #include "cg/io/point.h"
 
-using cg::rectangle_2f;
-using cg::contour_circulator;
-using cg::contour_2f;
-
+namespace cg {
 namespace visualization
 {
    void draw(drawer_type & drawer, rectangle_2f const & rect)
@@ -34,4 +31,4 @@ namespace visualization
       }
       while (it != beg);
    }
-}
+}}

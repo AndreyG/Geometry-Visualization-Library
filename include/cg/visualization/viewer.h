@@ -5,6 +5,7 @@
 #include "cg/primitives/point.h"
 #include "cg/primitives/segment.h"
 
+namespace cg {
 namespace visualization
 {
    using cg::point_2f;
@@ -66,4 +67,4 @@ namespace visualization
    };
 
    void run_viewer(viewer_type * viewer, const char * title);
-}
+}}

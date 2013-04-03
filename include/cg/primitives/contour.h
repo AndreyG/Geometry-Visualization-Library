@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "point.h"
-#include "common/range.h"
+#include "cg/common/range.h"
 
 namespace cg
 {

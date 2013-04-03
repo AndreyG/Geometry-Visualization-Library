@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
-#include "visualization/viewer.h"
+#include "cg/visualization/viewer.h"
 #include "main_window.h"
 
+namespace cg {
 namespace visualization
 {
    void run_viewer(viewer_type * viewer, const char * title)
@@ -13,4 +14,4 @@ namespace visualization
       wnd->show();
       qApp->exec();
    }
-}
+}}

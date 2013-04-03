@@ -3,6 +3,7 @@
 #include <iterator>
 #include <boost/range/iterator.hpp>
 
+namespace cg {
 namespace common
 {
    template<typename BidirectionalRange>
@@ -82,4 +83,4 @@ namespace common
    {
       return !(a == b);
    }
-}
+}}
