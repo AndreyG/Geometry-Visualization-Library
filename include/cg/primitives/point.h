@@ -6,8 +6,9 @@ namespace cg
 {
    template <class Scalar> struct point_2t;
 
-   typedef point_2t<float> point_2f;
-   typedef point_2t<int>   point_2i;
+   typedef point_2t<double>   point_2;
+   typedef point_2t<float>    point_2f;
+   typedef point_2t<int>      point_2i;
 
    template <class Scalar>
    struct point_2t
