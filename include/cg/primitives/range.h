@@ -41,7 +41,7 @@ namespace cg
    template <class Scalar>
    range_t<Scalar> const operator & (range_t<Scalar> const & a, range_t<Scalar> const & b)
    {
-      return range_f(std::max(a.inf, b.inf), std::min(a.sup, b.sup));
+      return range_t<Scalar>(std::max(a.inf, b.inf), std::min(a.sup, b.sup));
    }
 
    inline float center(range_f const & r)
