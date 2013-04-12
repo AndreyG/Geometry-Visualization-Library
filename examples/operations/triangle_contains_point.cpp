@@ -21,7 +21,7 @@ struct triangle_contains_point_viewer : cg::visualization::viewer_adapter
 {
    triangle_contains_point_viewer()
       : t_(point_2(0, 0), point_2(100, 100), point_2(200, 0))
-	  , lbutton_pressed_(false)
+	  , rbutton_pressed_(false)
    {}
 
    void draw(cg::visualization::drawer_type & drawer) const
@@ -35,7 +35,7 @@ struct triangle_contains_point_viewer : cg::visualization::viewer_adapter
 	  
 	  if (idx_)
 	  {
-		  drawer.set_color((lbutton_pressed_)? Qt::red : Qt::yellow);
+		  drawer.set_color((rbutton_pressed_)? Qt::red : Qt::yellow);
 		  drawer.draw_point(t_[*idx_], 5);
 	  }
    }
@@ -50,44 +50,52 @@ struct triangle_contains_point_viewer : cg::visualization::viewer_adapter
 
    bool on_press(const point_2f & p)
    {
-	  lbutton_pressed_ = true;
+	  rbutton_pressed_ = true;
       return set_idx(p);
    }
 
    bool on_release(const point_2f & p)
    {
-      lbutton_pressed_ = false;
+      rbutton_pressed_ = false;
       return false;
    }
 
    bool on_move(const point_2f & p)
    {
-      current_point_ = p;
-      set_idx(p);
+      if (!rbutton_pressed_)
+      {
+         current_point_ = p;
+         set_idx(p);
+      }
       if (!idx_)
          return true;
 
-      if (lbutton_pressed_) t_[*idx_] = p;
+      if (rbutton_pressed_) t_[*idx_] = p;
       return true;
    }
 
 private:
    bool set_idx (const point_2f & p)
    {
-	   idx_.reset();
-       for (size_t l = 0; l != 3; ++l)
-       if (fabs(p.x - t_[l].x) < 25 && fabs(p.y - t_[l].y) < 25)
-       {
-          idx_ = l;
-          return true;
-       }
-       return false;
+      idx_.reset();
+      float max_r;
+      for (size_t l = 0; l != 3; ++l)
+      {
+         float current_r = (p.x - t_[l].x) * (p.x - t_[l].x) + (p.y - t_[l].y) * (p.y - t_[l].y);
+         if ((idx_ && current_r < max_r) || (!idx_ && current_r < 100))
+         {
+            idx_ = l;
+            max_r = current_r;
+         }
+      }
+      return idx_;
    }
 	
    cg::triangle_2 t_;
    boost::optional<size_t> idx_;
    boost::optional<cg::point_2> current_point_;
-   bool lbutton_pressed_;
+   bool rbutton_pressed_;
+   
 };
 
 int main(int argc, char ** argv)
