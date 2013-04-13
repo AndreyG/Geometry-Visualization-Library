@@ -5,45 +5,42 @@
 namespace util
 {
 
-    namespace detail
+    template<class ValueType, class Distribution, class RandomDevice>
+    class random_generator
     {
-        template<class ValueType, class Distribution, class RandomDevice>
-        class random_generator
+        RandomDevice generator;
+        Distribution d;
+    public:
+        random_generator(ValueType min, ValueType max) : d(min, max)
+        {}
+
+        random_generator() : random_generator(std::numeric_limits<ValueType>::min(),
+                                                  std::numeric_limits<ValueType>::max())
+        {}
+
+        ValueType operator() ()
         {
-            RandomDevice generator;
-            Distribution d;
-        public:
-            random_generator(ValueType min, ValueType max) : d(min, max)
-            {}
+            return d(generator);
+        }
 
-            random_generator() : random_generator(std::numeric_limits<ValueType>::min(),
-                                                      std::numeric_limits<ValueType>::max())
-            {}
+        void reset(ValueType min, ValueType max)
+        {
+            d = Distribution(min, max);
+        }
 
-            ValueType operator() ()
-            {
-                return d(generator);
-            }
-
-            void reset(ValueType min, ValueType max)
-            {
-                d = Distribution(min, max);
-            }
-
-            random_generator& operator>> (ValueType& rhs)
-            {
-                rhs = (*this)();
-                return *this;
-            }
-        };
-    }
+        random_generator& operator>> (ValueType& rhs)
+        {
+            rhs = (*this)();
+            return *this;
+        }
+    };
 
     template<class Int, class RandomDevice = std::random_device>
-    using uniform_random_int = detail::random_generator<Int,
+    using uniform_random_int = random_generator<Int,
           std::uniform_int_distribution<Int>, RandomDevice>;
 
     template<class Real, class RandomDevice = std::random_device>
-    using uniform_random_real = detail::random_generator<Real,
+    using uniform_random_real = random_generator<Real,
           std::uniform_real_distribution<Real>, RandomDevice>;
 
     inline std::string randomString(int length)
