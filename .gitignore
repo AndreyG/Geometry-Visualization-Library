@@ -1,4 +1,1 @@
-*.swp
-Makefile
-libvisualization.a
-bin
+*.user

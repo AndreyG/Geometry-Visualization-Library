@@ -1,47 +1,43 @@
-#ifndef _DRAWER_IMPL_H_ 
-#define _DRAWER_IMPL_H_ 
+#pragma once
 
 #include <QtOpenGL>
 
-#include "visualization/viewer.h"
+#include "cg/visualization/viewer.h"
 
+namespace cg {
 namespace visualization
 {
+   struct drawer_impl : drawer_type
+   {
+      void set_color(QColor const & c);
+      void draw_line(segment_2f const &, float width);
+      void draw_line(point_2f const &, point_2f const &, float width);
+      void draw_point(point_2f const & pt, float radius);
 
-struct drawer_impl : drawer_type
-{
-    void set_color(QColor const & c);
-    void draw_line(segment_type const &, double width);
-    void draw_line(point_type const &, point_type const &, double width);
-    void draw_point(point_type const & pt, uint8 radius);
+      drawer_impl()
+         : current_color_ (Qt::black)
+      {}
 
-    drawer_impl()
-        : current_color_ (Qt::black)
-    {}
+      void clear();
 
-    void clear();
+      struct point_buffer_t
+      {
+         std::vector<GLfloat>    points;
+         std::vector<GLfloat>    colors;
+         float radius;
+      };
 
-    struct point_buffer_t
-    {
-        std::vector<GLint>      points;
-        std::vector<GLdouble>   colors;
-        size_t radius;
-    };
+      struct segment_buffer_t
+      {
+         std::vector<GLfloat>    segments;
+         std::vector<GLfloat>    colors;
+         float width;
+      };
 
-    struct segment_buffer_t
-    {
-        std::vector<GLint>      segments;
-        std::vector<GLdouble>   colors;
-        double width;
-    };
+      std::vector<point_buffer_t>     point_buffers;
+      std::vector<segment_buffer_t>   segment_buffers;
 
-    std::vector<point_buffer_t>     point_buffers;
-    std::vector<segment_buffer_t>   segment_buffers;
-
-private:
-    QColor current_color_;
-};
-
-}
-
-#endif /*_DRAWER_IMPL_H_*/
+   private:
+      QColor current_color_;
+   };
+}}
