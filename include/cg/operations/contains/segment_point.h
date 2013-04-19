@@ -14,8 +14,6 @@ namespace cg
       if (cg::orientation(s[0], s[1], q) != CG_COLLINEAR)
          return false;
 
-      if (s[0] > s[1]) std::swap(s[0], s[1]);
-
-      return range_t<point_2>(s[0], s[1]).contains(q);
+      return collinear_are_ordered_along_line(s[0], q, s[1]);
    }
 }
