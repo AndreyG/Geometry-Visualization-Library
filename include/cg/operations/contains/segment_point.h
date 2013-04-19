@@ -9,7 +9,7 @@
 namespace cg
 {
 	template<class Scalar>
-   inline bool contains(segment_2t<Scalar> s, point_2t<Scalar> const & q)
+   bool contains(segment_2t<Scalar> const & s, point_2t<Scalar> const & q)
    {
       if (cg::orientation(s[0], s[1], q) != CG_COLLINEAR)
          return false;

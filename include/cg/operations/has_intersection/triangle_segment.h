@@ -9,7 +9,7 @@
 namespace cg
 {
    template<class Scalar>
-   inline bool has_intersection(triangle_2t<Scalar> const & t, segment_2t<Scalar> const & s)
+   bool has_intersection(triangle_2t<Scalar> const & t, segment_2t<Scalar> const & s)
    {
       if (contains(t, s[0]))
          return true;
