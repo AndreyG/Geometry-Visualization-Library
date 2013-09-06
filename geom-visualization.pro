@@ -19,6 +19,10 @@ INCLUDEPATH += headers src
 
 QMAKE_CXXFLAGS = -std=c++0x -Wall
 
+macx {
+    QMAKE_CXXFLAGS += -stdlib=libc++  
+}
+
 CONFIG += precompile_header
 PRECOMPILED_HEADER = stdafx.h
 
