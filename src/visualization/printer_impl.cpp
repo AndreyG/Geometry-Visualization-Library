@@ -58,8 +58,8 @@ namespace visualization
 
     void endl(stream_type & out) { out.end_line(); }
 
-    printer_impl::printer_impl( std::function<void (int, int, const char *)>          const & draw_string_corner,
-                                std::function<void (double, double, const char *)>    const & draw_string_global) 
+    printer_impl::printer_impl( std::function<void (int, int, const char *)>        draw_string_corner,
+                                std::function<void (double, double, const char *)>  draw_string_global)
         : draw_string_global_(draw_string_global)
         , corner_stream_height_indent_(15)
         , corner_stream_(

@@ -11,8 +11,8 @@ struct printer_impl : printer_type
     stream_type& corner_stream();
     stream_type& global_stream(point_type const & pt);
 
-    printer_impl(   std::function<void (int, int, const char *)>          const & draw_string_corner,
-                    std::function<void (double, double, const char *)>    const & draw_string_global);
+    printer_impl(   std::function<void (int, int, const char *)>          draw_string_corner,
+                    std::function<void (double, double, const char *)>    draw_string_global);
 
 private:
     std::function<void (double, double, const char *)>    draw_string_global_;

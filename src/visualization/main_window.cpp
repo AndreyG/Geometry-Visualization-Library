@@ -119,8 +119,8 @@ void main_window_t::paintGL()
         glDisableClientState(GL_COLOR_ARRAY);
     }
 
-    printer_impl printer(   boost::bind(&main_window_t::draw_string,        this, _1, _2, _3),
-                            boost::bind(&main_window_t::draw_string_global, this, _1, _2, _3)   );
+    printer_impl printer(   [this] (int x, int y, const char * s) { draw_string         (x, y, s); },
+                            [this] (int x, int y, const char * s) { draw_string_global  (x, y, s); } );
 
     printer.corner_stream() << "Mouse pos: " << current_pos_ << endl;
 
