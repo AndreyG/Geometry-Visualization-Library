@@ -9,12 +9,13 @@
 
 main_window_t::main_window_t(viewer_type * viewer)
     : viewer_(viewer)
-    , size_(100000, 100000)
+    , size_(500, 500)
     , current_pos_(center_)
     , zoom_(1.0)
 {
     setMouseTracking(true);
     viewer_->draw(drawer_);
+    showFullScreen();
 }
 
 void main_window_t::initializeGL()
@@ -178,7 +179,6 @@ void main_window_t::mousePressEvent(QMouseEvent * e)
 void main_window_t::mouseMoveEvent(QMouseEvent * e)
 {
     current_pos_ = limit(screen_to_global(e->pos()));
-
     if (start_point_ )
     {
         const int w = size().width(); 

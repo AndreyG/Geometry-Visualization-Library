@@ -15,7 +15,9 @@ DEPENDPATH += src \
               src/io \
               src/visualization \
 
-INCLUDEPATH += headers src
+INCLUDEPATH += headers \
+               src \
+               "C:\Program Files\boost\boost_1_75_0" \
 
 QMAKE_CXXFLAGS = -std=c++0x -Wall
 
@@ -28,23 +30,12 @@ PRECOMPILED_HEADER = src/stdafx.h
 
 # Input
 HEADERS += src/stdafx.h \
-           headers/common/range.h \
-           headers/io/point.h \
-           headers/io/range.h \
-           headers/io/rectangle.h \
-           headers/io/segment.h \
-           headers/io/vector.h \
-           headers/visualization/draw_util.h \
-           headers/visualization/viewer.h \
-           src/visualization/drawer_impl.h \
-           src/visualization/main_window.h \
-           src/visualization/printer_impl.h \
-           headers/geom/primitives/contour.h \
-           headers/geom/primitives/point.h \
-           headers/geom/primitives/range.h \
-           headers/geom/primitives/rectangle.h \
-           headers/geom/primitives/segment.h \
-           headers/geom/primitives/vector.h \
+           headers/common/* \
+           headers/io/* \
+           headers/visualization/* \
+           src/visualization/*.h \
+           headers/geom/primitives/* \
+           headers/type_aliases.cpp \
 
 SOURCES += src/io/primitives.cpp \
            src/visualization/drawer_impl.cpp \

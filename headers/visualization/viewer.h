@@ -2,9 +2,10 @@
 #define _VIEWER_H_
 
 #include <QColor>
-
+#include <QWidget>
 #include "geom/primitives/point.h"
 #include "geom/primitives/segment.h"
+
 
 namespace visualization 
 {
